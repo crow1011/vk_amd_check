@@ -1,0 +1,12 @@
+server:
+  name: 'alerter1'
+vk:
+  access_token: "access token"
+  group_id: "123"
+es:
+  host: "http://localhost:9200"
+  # sets the frequency of queries to elasticsearch in seconds
+  query_frequency: 60
+tg:
+  api_key: ""
+  chat_id: ""
