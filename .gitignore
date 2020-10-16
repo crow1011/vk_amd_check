@@ -2,6 +2,4 @@ venv
 .idea
 *.log
 *.pyc
-*.yaml
-*.yml
 __pycache__

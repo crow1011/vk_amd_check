@@ -1,2 +1,4 @@
 PyYaml
 elasticsearch
+vk
+requests
