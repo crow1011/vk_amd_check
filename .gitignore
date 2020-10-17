@@ -2,4 +2,8 @@ venv
 .idea
 *.log
 *.pyc
+*.yaml
+*.yml
 __pycache__
+!docker-compose.yml
+!docker-compose-get_my_id.yml

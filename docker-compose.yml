@@ -1,0 +1,29 @@
+version: '2.2'
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    container_name: es
+    environment:
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 127.0.0.1:9200:9200
+    networks:
+      - elastic
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    command: python3 main.py
+    volumes:
+      - ./app/conf:/app/conf
+      - ./app/logs:/app/logs
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge

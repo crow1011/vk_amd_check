@@ -1,0 +1,10 @@
+version: '2.2'
+services:
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile-get_my_id
+    command: python3 get_my_id.py
+    volumes:
+      - ./app/conf:/app/conf
+      - ./app/logs:/app/logs

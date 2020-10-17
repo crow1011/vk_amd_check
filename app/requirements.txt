@@ -1,4 +1,4 @@
 PyYaml
 elasticsearch
 vk
-requests
+PyTelegramBotApi
