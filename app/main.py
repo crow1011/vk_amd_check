@@ -1,32 +1,14 @@
-import logging
+# stock
 import time
 from datetime import datetime
+# install
 import elasticsearch
-import yaml
 import vk
 import telebot
+# new
+from get_config import get_config
+from get_logger import get_logger
 
-def get_config(conf_path='conf/config.yaml'):
-    with open(conf_path, 'r') as file:
-        conf = yaml.load(file, Loader=yaml.FullLoader)
-    return conf
-
-
-def get_logger(logger_conf):
-    log_file = logger_conf['log_dir'] + logger_conf['log_file']
-    logger = logging.getLogger(__name__)
-    fh = logging.FileHandler(log_file)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
-    log_level = {
-        'debug': logging.DEBUG,
-        'info': logging.INFO,
-        'warning': logging.WARNING,
-        'error': logging.ERROR
-    }
-    logger.setLevel(log_level[logger_conf['log_level']])
-    return logger
 
 
 # get config from default path conf/config.yaml
@@ -57,10 +39,10 @@ def check_adm_count_change(group_id, adm_count, index):
         change_status = True
         last_count = res['hits']['hits'][0]['_source']['adm_count']
         logger.debug(f'# fix change adm_count last:{last_count} != actual {adm_count}')
-    elif res['hits']['hits'][0]['_source']['adm_count']!=adm_count:
+    elif res['hits']['hits'][0]['_source']['adm_count']==adm_count:
         change_status = False
         last_count = res['hits']['hits'][0]['_source']['adm_count']
-        logger.debug('# adm_count no change')
+        logger.debug(f'# adm_count no change. Last count {last_count}')
     return change_status
 
 
@@ -74,9 +56,8 @@ def send_to_es(group_id, adm_count, index, alerter):
     res = es.index(index=index, body=doc)
     return res
 
-def send_alert(group_id, adm_count):
-    #for send
-    pass
+def send_alert(chat_id, msg):
+    bot.send_message(int(chat_id), msg)
 
 
 def main():
@@ -87,8 +68,10 @@ def main():
     k_index = e_index + '*'
     alerter = conf['server']['name']
     adm_count_change = check_adm_count_change(group_id, adm_count,k_index)
+    adm_count_change = True
     if adm_count_change:
-        send_alert(group_id, adm_count)
+        msg = f"Changing adm_count for group_id: {str(adm_count)}. Now count: {str(adm_count)}"
+        send_alert(conf['tg']['chat_id'], msg)
         res = send_to_es(group_id, adm_count, e_index, alerter)
     else:
         if conf['server']['fix_no_change']:
