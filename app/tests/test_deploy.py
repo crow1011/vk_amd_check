@@ -42,7 +42,7 @@ class ConfigTest(unittest.TestCase, ColorPrint):
         self.assertNotEqual(len(conf['server']['name']), 0)
         self.print_pass('Done')
 
-        self.print_info('Checking type of field server->query_interval is number and is the bigger than 0')
+        self.print_info('Checking type of field server->query_interval is number and is bigger than 0')
         self.assertEqual(type(conf['server']['query_interval']), int)
         self.assertEqual(conf['server']['query_interval'] > 0, True)
         self.print_pass('Done')
