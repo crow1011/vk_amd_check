@@ -1,6 +1,7 @@
 version: '2.2'
 services:
   app:
+    container_name: get_my_id
     build:
       context: app
       dockerfile: Dockerfile-get_my_id

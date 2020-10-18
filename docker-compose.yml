@@ -14,6 +14,7 @@ services:
     networks:
       - elastic
   app:
+    container_name: vk_adm_check
     build:
       context: app
       dockerfile: Dockerfile
