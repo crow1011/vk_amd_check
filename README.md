@@ -49,8 +49,9 @@ docker-compose -f docker-compose-get_my_id.yml down -v
 ```
 *3* Запустите тесты:
 ```bash
+sudo apt install python3-pytest
 cd app/
-pytest -s
+pytest-3 -s
 cd ../
 ```
 В случае успешного прохождения всех тестов можете переходить к следующему. Если тестирование выявило ошибки ознакомьтесь с

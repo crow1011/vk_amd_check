@@ -1,12 +1,9 @@
 FROM python:3.8-slim
 
 
-COPY get_my_id.py /app
-COPY get_config.py /app
-COPY get_logger.py /app
-COPY requirements.txt /app
+COPY . /app
 
-WORKDIR /get_my_id
+WORKDIR /app
 
 RUN pip3 install -r requirements.txt
 
