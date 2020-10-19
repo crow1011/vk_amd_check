@@ -1,12 +1,23 @@
 server:
   name: 'alerter1'
+  # sets the interval of queries to elasticsearch in seconds
+  query_interval: 30
+  fix_no_change: True
+
 vk:
-  access_token: "access token"
-  group_id: "123"
+  access_token: ""
+  group_id: ""
+
 es:
-  host: "http://localhost:9200"
-  # sets the frequency of queries to elasticsearch in seconds
-  query_frequency: 60
+  host: "http://es:9200"
+  index: 'vk-adm-check'
+
 tg:
   api_key: ""
   chat_id: ""
+
+logger:
+  log_level: 'debug' #debug, info, warning, error
+  log_file: 'main.log'
+  #pls don't change
+  log_dir: 'logs/'
