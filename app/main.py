@@ -110,7 +110,6 @@ def main(conf):
     logger.debug(f'# e_index: {e_index}, k_index: {k_index}')
     adm_list_change, es_adm_items = check_adm_list_change(group_id, adm_list, k_index)
     # if you need test send message set this adm_list_change = True
-    adm_list_change = True
     if adm_list_change:
         logger.debug('# Detect adm_list_change')
         logger.debug('# Generate message')

@@ -1,4 +1,4 @@
-# *Мониторинг списка администраторов паблика vk*
+# Мониторинг списка администраторов паблика vk
 
 Скрипт проверяет список администраторов через интервал указанный в параметре query_interval. 
 В случае изменения списка администраторов скрипт отправит уведомление в телеграмм.
@@ -35,7 +35,7 @@ git clone https://github.com/crow1011/vk_amd_check.git
 *2* Переименуйте файл vk_amd_check/app/conf/config.yaml.example в vk_amd_check/app/conf/config.yaml и заполните обязательные поля.
 ```bash
 cd vk_amd_check
-mv app/conf/config.yaml.example
+mv app/conf/config.yaml.example app/conf/config.yaml
 ```
 *2.1* В случае если у вас нет tg>chat_id, заполните все поля кроме этого и 
 ```bash
