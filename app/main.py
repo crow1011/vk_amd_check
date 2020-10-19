@@ -19,8 +19,11 @@ bot = telebot.TeleBot(conf['tg']['api_key'])
 
 
 def get_adm_list(group_id, vk_api):
-    res = vk_api.groups.getMembers(group_id=group_id, v='5.124', filter=['manages'])
-    return res
+    res = vk_api.groups.getMembers(group_id=group_id, v='5.124', filter=['managers'])
+    adm_list = []
+    for adm in res['response']['items']:
+        adm_list.append(adm)
+    return adm_list
 
 
 def check_adm_list_change(group_id, adm_list, index):
