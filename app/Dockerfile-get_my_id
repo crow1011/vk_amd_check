@@ -6,7 +6,7 @@ COPY get_config.py /app
 COPY get_logger.py /app
 COPY requirements.txt /app
 
-WORKDIR /app
+WORKDIR /get_my_id
 
 RUN pip3 install -r requirements.txt
 
