@@ -21,10 +21,11 @@ bot = telebot.TeleBot(conf['tg']['api_key'])
 def get_adm_list(group_id, vk_api):
     res = vk_api.groups.getMembers(group_id=group_id, v='5.124', filter=['managers'])
     adm_list = {'items': [], 'count': 0}
-    logger.debug(str(res))
     for adm in res['items']:
-        adm_list['items'].append(adm)
+        adm_list['items'].append(adm['id'])
     adm_list['count'] = len(adm_list['items'])
+    logger.debug('# Adm list')
+    logger.debug(adm_list)
     return adm_list
 
 
@@ -42,6 +43,8 @@ def check_adm_list_change(group_id, adm_list, index):
         # stop and return None if it's first start
         return change_status, None
     es_adm_items = res['hits']['hits'][0]['_source']['adm_items']
+    logger.debug(es_adm_items)
+    logger.debug(adm_list['items'])
     if sorted(es_adm_items) != sorted(adm_list['items']):
         change_status = True
         logger.debug(f'# fix change adm_list last:{es_adm_items} <> actual {adm_list}')
