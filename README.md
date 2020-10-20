@@ -8,7 +8,7 @@
 - [ ] [VK access token](https://vk.com/dev/access_token)
 - [ ] [Telegram bot token](https://core.telegram.org/bots)
 - [ ] [VK group ID - можно взять из url группы](https://vk.com/dev/groups.get)
-- [ ] Telegram chat id - id вашего с ботом чата. Получить можно на шаге 1.1
+- [ ] Telegram chat id - id вашего с ботом чата. Получить можно на шаге 2.1
 
 # *config.yaml*
 
@@ -67,4 +67,4 @@ docker-compose up -d
 docker-compose down -v
 ```
 
-Если вам потребуется зменить конфигуарцию достаточно изменить конфигурационный файл и перезапустить контейнеры.
+Если вам потребуется изменить конфигурацию достаточно изменить конфигурационный файл и перезапустить контейнеры.
